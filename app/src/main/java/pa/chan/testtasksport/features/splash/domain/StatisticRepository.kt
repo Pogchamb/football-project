@@ -2,6 +2,6 @@ package pa.chan.testtasksport.features.splash.domain
 
 interface StatisticRepository {
 
-    suspend fun setMatchesInfo(): Boolean
+    suspend fun loadStartMatchInfo(): Boolean
 
 }

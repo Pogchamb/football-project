@@ -7,7 +7,7 @@ class LoadStatisticUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): Boolean {
-        return statisticRepository.setMatchesInfo()
+        return statisticRepository.loadStartMatchInfo()
     }
 
 }
