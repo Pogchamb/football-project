@@ -1,7 +1,10 @@
 package pa.chan.testtasksport.features.core.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +48,21 @@ class AppModule {
         @Singleton
         fun provideDataBase(@ApplicationContext context: Context): AppDataBase {
             return Room.databaseBuilder(context, AppDataBase::class.java, "Database").build()
+        }
+
+        @Provides
+        @Singleton
+        fun provideSharedPreferences(
+            @ApplicationContext context: Context,
+            key: MasterKey
+        ): SharedPreferences {
+            return EncryptedSharedPreferences.create(
+                context,
+                "keys",
+                key,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
         }
 
     }
