@@ -8,7 +8,7 @@ class StatisticRepositoryImpl @Inject constructor(
     private val statisticRemoteDataSource: StatisticRemoteDataSource,
     private val statisticLocalDataSource: StatisticLocalDataSource
 ) : StatisticRepository {
-    override suspend fun setMatchesInfo(): Boolean {
+    override suspend fun loadStartMatchInfo(): Boolean {
 
         return try {
             val matchesDtoList = statisticRemoteDataSource.getStatistic()
