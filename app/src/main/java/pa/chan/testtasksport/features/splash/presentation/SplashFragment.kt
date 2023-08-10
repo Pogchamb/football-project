@@ -26,10 +26,12 @@ class SplashFragment : Fragment() {
         viewModel.loadStatistic()
 
         viewModel.loadLiveData.observe(viewLifecycleOwner) {
-            if (it) {
-                val action = SplashFragmentDirections.actionSplashFragmentToMainFragment()
-                findNavController().navigate(action)
-            }
+            val action = SplashFragmentDirections.actionSplashFragmentToMainFragment(
+                it.currentPage.toInt(),
+                it.hasMore
+            )
+            findNavController().navigate(action)
+
         }
     }
 }

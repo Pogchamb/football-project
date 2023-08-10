@@ -18,5 +18,12 @@
         android:id="@+id/mainFragment"
         android:name="pa.chan.testtasksport.features.main_page.presentation.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <argument
+            android:name="currentPage"
+            app:argType="integer" />
+        <argument
+            android:name="hasMore"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

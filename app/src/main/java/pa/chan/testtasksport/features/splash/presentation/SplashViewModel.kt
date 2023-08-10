@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import pa.chan.testtasksport.features.splash.data.dto.PaginationDto
 import pa.chan.testtasksport.features.splash.domain.LoadStatisticUseCase
 import javax.inject.Inject
 
@@ -14,17 +15,16 @@ class SplashViewModel @Inject constructor(
     private val loadStatisticUseCase: LoadStatisticUseCase
 ): ViewModel() {
 
-    private val _loadLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    val loadLiveData: LiveData<Boolean>
+    private val _loadLiveData: MutableLiveData<PaginationDto> = MutableLiveData()
+    val loadLiveData: LiveData<PaginationDto>
         get() = _loadLiveData
 
 
     fun loadStatistic() {
         viewModelScope.launch {
-            val load = loadStatisticUseCase()
-            _loadLiveData.postValue(load)
+            val pagination = loadStatisticUseCase()
+            _loadLiveData.postValue(pagination)
         }
     }
-
 
 }
