@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
     companion object {
-//        24741799d6920e3f13fce4cf8779fc092a460ea6ada78db0bb8de3e4d6dadacc
-        private const val url = "https://apiv2.allsportsapi.com/basketball"
+
+        private const val url = "https://api.sportmonks.com/v3/football"
 
         @Provides
         @Singleton
