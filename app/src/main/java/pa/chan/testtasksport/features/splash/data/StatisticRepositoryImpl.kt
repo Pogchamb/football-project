@@ -8,9 +8,9 @@ class StatisticRepositoryImpl @Inject constructor(
     private val statisticRemoteDataSource: StatisticRemoteDataSource,
     private val statisticLocalDataSource: StatisticLocalDataSource
 ) : StatisticRepository {
-    override suspend fun setMatchesInfo() {
+    override suspend fun setMatchesInfo(): Boolean {
 
-        try {
+        return try {
             val matchesDtoList = statisticRemoteDataSource.getStatistic()
             val matchesEntityList = statisticLocalDataSource.getStatistic()
             matchesDtoList.forEach {
@@ -19,9 +19,10 @@ class StatisticRepositoryImpl @Inject constructor(
                     matchEntity
                 )
             }
-
+            true
         } catch (e: Exception) {
-            throw e
+            e.message
+            false
         }
 
     }

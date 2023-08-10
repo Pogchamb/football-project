@@ -2,13 +2,13 @@ package pa.chan.testtasksport.features.splash.data
 
 import pa.chan.testtasksport.features.splash.data.dto.MatchesDto
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface StatisticApi {
-    @GET("/fixtures?page={page}&api_token={token}")
+    @GET("fixtures")
     suspend fun getStatistic(
-        @Path(value = "page") page: String,
-        @Path(value = "token") token: String
+        @Query("page") page : String,
+        @Query("api_token") token : String
     ): MatchesDto
 
 }

@@ -1,11 +1,15 @@
 package pa.chan.testtasksport.features.core.di
 
+import android.content.Context
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import pa.chan.testtasksport.features.core.AppDataBase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -15,7 +19,7 @@ import javax.inject.Singleton
 class AppModule {
     companion object {
 
-        private const val url = "https://api.sportmonks.com/v3/football"
+        private const val url = "https://api.sportmonks.com/v3/football/"
 
         @Provides
         @Singleton
@@ -36,5 +40,12 @@ class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
+
+        @Provides
+        @Singleton
+        fun provideDataBase(@ApplicationContext context: Context): AppDataBase {
+            return Room.databaseBuilder(context, AppDataBase::class.java, "Database").build()
+        }
+
     }
 }

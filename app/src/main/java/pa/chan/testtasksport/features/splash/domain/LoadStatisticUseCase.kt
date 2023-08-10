@@ -6,8 +6,8 @@ class LoadStatisticUseCase @Inject constructor(
     private val statisticRepository: StatisticRepository
 ) {
 
-    suspend operator fun invoke() {
-        statisticRepository.setMatchesInfo()
+    suspend operator fun invoke(): Boolean {
+        return statisticRepository.setMatchesInfo()
     }
 
 }
