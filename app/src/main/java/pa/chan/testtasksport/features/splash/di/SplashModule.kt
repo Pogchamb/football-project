@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import pa.chan.testtasksport.features.core.AppDataBase
 import pa.chan.testtasksport.features.splash.data.StatisticApi
+import pa.chan.testtasksport.features.splash.data.StatisticRepositoryImpl
 import pa.chan.testtasksport.features.splash.domain.StatisticRepository
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -25,11 +26,11 @@ abstract class SplashModule {
 
         @Provides
         @Singleton
-        fun provideDetailDao(appDatabase: AppDataBase) = appDatabase.statisticDao()
+        fun provideDetailDao(appDataBase: AppDataBase) = appDataBase.statisticDao()
 
     }
 
     @Binds
-    abstract fun bindsDetailRepository(statisticRepository: StatisticRepository): StatisticRepository
+    abstract fun bindsDetailRepository(statisticRepositoryImpl: StatisticRepositoryImpl): StatisticRepository
 
 }
