@@ -29,6 +29,7 @@ class MainRepositoryImpl @Inject constructor(
         prefDataSource.setCurrentPage(matchesDtoList.pagination.currentPage.toInt())
 
         val matchesEntityList = statisticLocalDataSource.getStatistic()
+
         val matchesModelList = matchesDtoList.data.map {
             val matchEntity = it.toEntity()
             if (!matchesEntityList.contains(matchEntity)) {

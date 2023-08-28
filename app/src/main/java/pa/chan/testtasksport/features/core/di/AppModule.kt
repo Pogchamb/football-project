@@ -52,6 +52,14 @@ class AppModule {
 
         @Provides
         @Singleton
+        fun provideMasterKeyAlias(@ApplicationContext context: Context): MasterKey {
+            return MasterKey.Builder(context)
+                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+                .build()
+        }
+
+        @Provides
+        @Singleton
         fun provideSharedPreferences(
             @ApplicationContext context: Context,
             key: MasterKey
